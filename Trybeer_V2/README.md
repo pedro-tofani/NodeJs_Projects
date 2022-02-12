@@ -1,75 +1,75 @@
-## Requisitos do projeto
+## Project requirements
 
-### Testes
+### Tests
 
-1. A cobertura de testes unitários do back-end deve ser de, no mínimo, 90%.
+1. Backend unit test coverage must be at least 90%.
 
 ### Sequelize
 
-2. A lógica da regra de negócio da aplicação deve estar centralizada no back-end, ou seja, na API `Node.js`. Com isso, o único lugar que deve conter a lógica será o back-end: o banco de dados e front-end **não devem** conter lógicas de regra de negócio. Ou seja, muito cuidado ao utilizar _triggers_, _procedures_, dentre outras, e muito cuidado com regras de negócio no front-end.
+2. The application's business rule logic must be centered on the back-end, that is, on the `Node.js` API. With that, the only place that should contain the logic will be the back-end: the database and front-end **should not** contain business rule logic. That is, be very careful when using _triggers_, _procedures_, among others, and be very careful with business rules on the front-end.
 
-3. O projeto deve passar a utilizar o _ORM Sequelize_ ao invés do driver do _MySQL_.
+3. The project should start using the _ORM Sequelize_ instead of the _MySQL_ driver.
 
-4. Crie quantos `seeders` e quantas `migrations` quiser. Porém, lembre-se de criar todas as `migrations` necessárias para que o projeto seja gerado 100% funcional utilizando o banco de dados arquitetado por você. O arquivo `.sql`, contendo as _queries_ de criação/configuração do banco, não será mais necessário, visto que o projeto passará a utilizar `migrations` e `seeders`. Estes devem, portanto, ser removidos.
+4. Create as many `seeders` and `migrations` as you want. However, remember to create all the necessary `migrations` so that the project is generated 100% functional using the database you architected. The `.sql` file, containing the database creation/configuration _queries_, will no longer be necessary, as the project will use `migrations` and `seeders`. These must therefore be removed.
 
-### Status do pedido
+### Order status
 
-5. Todo pedido realizado deve ter um status referente ao seu progresso atual.
+5. Every order placed must have a status regarding its current progress.
 
-6. Os _status_ do pedido devem ser os seguintes:
+6. Order _status_ must be as follows:
 
-   - `Pendente` logo quando o pedido for criado;
+   - `Pending` right when the order is created;
 
-   - `Preparando` quando o pedido for iniciado pelo usuário admin;
+   - `Preparing` when the request is initiated by the admin user;
 
-   - `Entregue` quando o pedido terminar.
+   - `Delivered` when the order is finished.
 
-7. O usuário admin deve ter o controle de alterar o status do pedido. Lembre-se de seguir princípio `Open/Closed` de _SOLID_ para está implementação de forma que possam ser acrescentados novos comportamentos e `status` sem impactar os status já existentes.
+7. The admin user must have control to change the status of the order. Remember to follow the `Open/Closed` principle of _SOLID_ for this implementation so that new behaviors and `status` can be added without impacting existing statuses.
 
-8. Qualquer atualização feita no pedido pelo usuário admin deve se refletir em tempo real para o cliente.
+8. Any updates made to the order by the admin user must be reflected in real time to the customer.
 
-### Funcionalidade de chat, visão de cliente
+### Chat functionality, customer view
 
-9. Essa funcionalidade só deve existir na **visão de cliente**
+9. This functionality should only exist in the **client view**
 
-10. A plataforma deve ter acessível, no menu lateral, uma funcionalidade de chat denominada `Conversar com a loja`.
+10. The platform must have accessible, in the side menu, a chat functionality called `Chat with the store`.
 
-    - Um clique no item descrito como `Conversar com a loja` deve levar para uma página de chat.
+    - A click on the item described as `Chat with the store` should take you to a chat page.
 
-11. Na página de chat, as mensagens devem aparecer ordenadas com as mais recentes embaixo.
+11. On the chat page, messages should appear in order with the most recent at the bottom.
 
-    - A página deve mostrar as mensagens enviadas e recebidas, com as mensagens mais recentes mais embaixo.
+    - The page should show both sent and received messages, with the most recent messages at the bottom.
 
-    - A página deve ter um input para envio de nova mensagem ao chat.
+    - The page must have an input to send a new message to the chat.
 
-12. O nickname de cliente deve ser o email cadastrado.
+12. The customer nickname must be the registered email.
 
-13. O histórico da conversa deve ser salvo no banco de dados `MondoDB` e aparecer quando a pessoa abre a página.
+13. The conversation history must be saved in the `MondoDB` database and appear when the person opens the page.
 
-### Funcionalidade de chat, visão de admin
+### Chat functionality, admin view
 
-14. Essa funcionalidade só deve existir na **visão de admin**
+14. This functionality should only exist in the **admin view**
 
-15. A plataforma deve ter acessível, no menu lateral, uma funcionalidade de chats denominada `Conversas`.
+15. The platform must have accessible, in the side menu, a chat functionality called `Conversations`.
 
-    - Um clique no botão `Conversas` direciona para uma página que lista todas as conversas da loja.
+    - A click on the `Conversations` button takes you to a page that lists all the conversations in the store.
 
-    - As conversas devem aparecer numa lista. Cada conversa deve ser identificada pelo email da pessoa cliente em questão.
+    - Conversations should appear in a list. Each conversation must be identified by the email address of the customer in question.
 
-    - Caso não tenham conversas, deve ser exibido o texto "Nenhuma conversa por aqui".
+    - If there are no conversations, the text "No conversations here" should be displayed.
 
-16. Um clique num item da lista de conversas deve exibir na tela o respectivo chat.
+16. A click on an item in the conversation list should display the corresponding chat on the screen.
 
-    - Um clique em um item da lista deve exibir na tela a janela com o chat daquela conversa.
+    - A click on an item in the list should display the chat window for that conversation on the screen.
 
-    - O _nickname_ da loja na conversa deve ser "Loja".
+    - The _nickname_ of the shop in the conversation must be "Shop".
 
-    - A página da conversa deve mostrar, no topo da tela, o email do usuário que a Loja está conversando.
+    - The conversation page should show, at the top of the screen, the email of the user that the Store is talking to.
 
-    - A página da conversa deve ter um botão de voltar que ao ser clicado redireciona a pessoa a página de listagem de conversas novamente.
+    - The conversation page must have a back button that, when clicked, redirects the person to the conversation listing page again.
 
-17. O histórico de cada conversa deve ser salvo no banco de dados e aparecer quando a pessoa abre a página.
+17. The history of each conversation must be saved in the database and appear when the person opens the page.
 
-18. A lista de conversas deve ser ordenada pela data da última mensagem.
+18. The conversation list must be sorted by the date of the last message.
 
-    - A lista de conversas deve ser ordenada pela data da última mensagem (recebida ou enviada), as mais recentes no topo da lista.
+    - The list of conversations must be sorted by the date of the last message (received or sent), the most recent at the top of the list.
