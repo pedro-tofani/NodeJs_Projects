@@ -1,79 +1,71 @@
-## O que deverá ser desenvolvido
+## What should be developed
 
-Você vai refatorar parte de um CLI (command line interface) para que, ao invés de utilizar callbacks, utilize apenas Promises. Além disso, você vai implementar mais algumas funcionalidades, consumindo a mesma API que está sendo consumida.
+You are going to refactor part of a CLI (command line interface) so that instead of using callbacks, use only Promises. In addition, you will implement some more functionality, consuming the same API that is being consumed.
 
-## Desenvolvimento
+## Development
 
-O CLI mostra informações sobre o mundo de Game of Thrones utilizando, como fonte dessas informações, uma API pública chamada [An API of Ice And Fire](https://www.anapioficeandfire.com).
+The CLI displays information about the world of Game of Thrones using, as a source of this information, a public API called [An API of Ice And Fire](https://www.anapioficeandfire.com).
 
-O código deste repositório possui a funcionalidade de listar as personagens, e exibir os detalhes sobre uma personagem selecionada. Além de refatorar o código já existente, você deverá adicionar a funcionalidade de buscar livros pelo nome, exibir os resultados, e mostrar os detalhes do livro selecionado.
+The code in this repository has the functionality to list characters, and display details about a selected character. In addition to refactoring the existing code, you should add functionality to search for books by name, display the results, and show the details of the selected book.
 
-## Requisitos do projeto
+## Project requirements
 
-### 1 - O projeto deve ser feito, necessariamente, utilizando Promises
+### 1 - The project must be done, necessarily, using Promises
 
-Não pode haver nenhum tipo de código síncrono ou que utilize callbacks.
+There cannot be any kind of synchronous code or code that uses callbacks.
 
-Você pode trocar a biblioteca utilizada para fazer requisições HTTP, se preferir, mas a biblioteca atual já suporta Promises.
+You can change the library used to make HTTP requests if you prefer, but the current library already supports Promises.
 
-Você também pode utilizar async/await sempre que precisar manipular as Promises. Com isso, não existe a necessidade de consumi-las utilizando `then` e `catch`.
+You can also use async/await whenever you need to handle promises. With that, there is no need to consume them using `then` and `catch`.
 
-> **Dica**: Para entender como utilizar Promises ao invés de callbacks com o superagent, você pode consultar a [documentação oficial no npm](https://www.npmjs.com/package/superagent#node).
+> **Tip**: To understand how to use Promises instead of callbacks with superagent, you can refer to [official documentation on npm](https://www.npmjs.com/package/superagent#node).
 
-### 2 - Exibir, no menu inicial, o sub-menu "livros" e, dentro dele, uma opção "Pesquisar livros"
+### 2 - Display, in the main menu, the sub-menu "books" and, inside it, an option "Search for books"
 
-Ao selecionar essa opção, permita que o usuário insira o nome do livro que deseja pesquisar.
+When selecting this option, allow the user to enter the name of the book they want to search.
 
-> **Dica**: Você pode seguir a mesma estrutura já existente para o menu de personagens, presente na pasta `lib/menus/characters`.
+> **Tip**: You can follow the same structure for the characters menu, present in the `lib/menus/characters` folder.
 
-### 3 - Utilizando o nome inserido, realizar uma requisição para o endpoint `/books` da API, com o parâmetro `?name` contendo o nome digitado pelo usuário e apresentar os resultados para o usuário numa lista
+### 3 - Using the name entered, make a request to the `/books` endpoint of the API, with the `?name` parameter containing the name entered by the user and present the results to the user in a list
 
-Você pode consultar [a documentação](https://www.anapioficeandfire.com/Documentation#books) deste endpoint para verificar qual o formato em que os dados serão retornados.
+You can refer to [the documentation](https://www.anapioficeandfire.com/Documentation#books) of this endpoint to check what format the data will be returned in.
 
-A lista deve exibir apenas o nome do livro, e deve permitir que o usuário escolha um dos livros sobre o qual deseja ver os detalhes.
+The list should only display the name of the book, and should allow the user to choose one of the books they want to see details about.
 
-> **Dica**: Para realizar a busca utilizando o nome informado pelo usuário, você precisa enviar para a API o parâmetro `name` na URL, como o exemplo a seguir: `https://www.anapioficeandfire.com/api/books?name=A Game of Thrones`
+> **Tip**: To perform the search using the name informed by the user, you need to send the `name` parameter in the URL to the API, as in the following example: `https://www.anapioficeandfire.com/api /books?name=A Game of Thrones`
 
-### 4 - Caso nada seja digitado no momento da pesquisa, exiba todos os livros, paginados de 10 em 10
+### 4 - If nothing is typed at the time of the search, display all books, paginated 10 by 10
 
-Quando o CLI solicitar o nome do livro que a pessoa deseja pesquisar, existe a possibilidade de nada ser digitado. Nesse caso, a busca deve ser feita com o parâmetro `?name` em branco (`?name=`), para que a API retorne todos os livros.
+When the CLI asks for the name of the book that the person wants to search, there is a possibility that nothing will be typed. In this case, the search must be done with the `?name` parameter blank (`?name=`), so that the API returns all books.
 
-### 5 - Apresentar as opções "Próxima página" e "Página anterior" caso existam mais de 10 resultados
+### 5 - Display the options "Next page" and "Previous page" if there are more than 10 results
 
-Ambas as opções só devem ser exibidas quando de fato forem úteis, ou seja, se o usuário já estiver na primeira página, a opção "Página anterior" não deve ser exibida e, se o usuário já estiver na última página, a opção "Próxima página" não deve ser exibida.
+Both options should only be displayed when they are actually useful, that is, if the user is already on the first page, the "Previous page" option should not be displayed, and if the user is already on the last page, the "Next page" should not be displayed.
 
-Para entender como a paginação funciona, leia a [documentação da API](https://www.anapioficeandfire.com/Documentation#pagination).
+To understand how pagination works, read the [API documentation](https://www.anapioficeandfire.com/Documentation#pagination).
 
-Você precisará ler o conteúdo do header `link`, retornado pela API quando utiliza-se paginação. O arquivo `lib/utils.js` já possui uma função (`parseLinks`) que realiza a leitura desse header e o converte de string para um objeto. O arquivo `lib/menus/characters/actions/list.js` já faz a implementação desse requisito, você pode utiliza-lo como referência.
+You will need to read the contents of the `link` header, returned by the API when using pagination. The `lib/utils.js` file already has a function (`parseLinks`) that reads this header and converts it from a string to an object. The `lib/menus/characters/actions/list.js` file already implements this requirement, you can use it as a reference.
 
-### 6 - Quando o um livro for selecionado, exibir na tela as propriedades daquele livro
+### 6 - When a book is selected, display the properties of that book on the screen
 
-**Atenção:** As propriedades `characters` e `povCharacters` não deverão ser exibidas.
+**Warning:** The `characters` and `povCharacters` properties should not be displayed.
 
-Essa exibição deve ocorrer da mesma forma que ocorre com a personagem no menu "Personagens".
+This display must occur in the same way as with the character in the "Characters" menu.
 
-Após exibir os detalhes do livro, a aplicação deve retornar para a tela de resultados de livros.
+After displaying the book details, the application should return to the book results screen.
 
-### 7 - Sempre exibir uma opção de voltar
+### 7 - Always display a back option
 
-Em todos os menus, uma opção de "voltar" deve ser exibida. Essa opção deve levar o usuário para o menu anterior e, através dela, deve ser possível chegar de volta ao menu principal.
+In all menus, a "back" option should be displayed. This option should take the user to the previous menu and, through it, it should be possible to get back to the main menu.
 
-### 8 - Caso nenhum resultado for encontrado, exibir uma mensagem e voltar ao menu de livros
+### 8 - If no results are found, display a message and return to the books menu
 
-A API realiza a busca por palavras exatas no valor informado no parâmetro `name`. Caso seja informado um livro que não existe, a API retornará um Array vazio.
+The API performs the search for exact words in the value informed in the `name` parameter. If a book is informed that does not exist, the API will return an empty Array.
 
-Para esses casos, exiba na tela a mensagem `"Nenhum livro encontrado para essa pesquisa"` e, logo em seguida, retorne ao menu de livros
+For these cases, display the message `"No books found for this search"` on the screen and then return to the books menu
 
-### 9 - Exibir opção de listar as casas do mundo de Game of Thrones
+### 9 - Show option to list the houses of the Game of Thrones world
 
-Exibir, no menu principal, um menu "casas" e, dentro dele, uma opção "Listar casas".
+Display, in the main menu, a "houses" menu and, within it, an option "List houses".
 
-O comportamento deve ser idêntico ao de listar personagens, inclusive a paginação, que deve atender ao [requisito 5](#5---apresentar-as-opções-"próxima-página"-e-"página-anterior"-caso-existam-mais-de-10-resultados).
-
-**Atenção** A propriedade `swornMembers` não deve ser exibida ao selecionar uma casa.
-
-## Bônus
-
-### 10 - Implemente testes unitários que cubram 90% do código
-
----
+The behavior must be identical to that of listing characters, including pagination, which must meet [requirement 5](#5---display-the-options-"next-page"-and-"p
