@@ -1,113 +1,113 @@
-## Requisitos do projeto
+## Project requirements
 
-### Páginas
+### Pages
 
-#### Funcionalidades de visualização
+#### Visualization features
 
-> Páginas que podem ser acessadas sem login
+> Pages that can be accessed without login
 
-### 1 - Crie uma tela de listagem de receitas
+### 1 - Create a recipe listing screen
 
-A página deve ser acessível através da rota principal (`/`).
+The page must be accessible via the main route (`/`).
 
-Para cada receita, deve ser mostrado apenas o nome da receita e o nome da pessoa que cadastrou aquela receita, bem como um link para ver seus detalhes.
+For each recipe, only the name of the recipe and the name of the person who registered that recipe should be shown, as well as a link to see its details.
 
-Um botão "Nova receita" deve ser exibido **apenas quando houver um usuário logado**.
+A "New recipe" button should be displayed **only when there is a user logged in**.
 
-### 2 - Crie uma tela para visualizar uma receita específica
+### 2 - Create a screen to view a specific recipe
 
-A tela deve estar diponível no endpoint `/recipes/:id`
+The canvas must be available on the `/recipes/:id` endpoint
 
-Caso o ID da pessoa logada na aplicação seja o mesmo ID da pessoa que criou a receita, um botão "Editar receita" e um outro "Excluir receita" devem ser exibidos na página. Esses botões devem levar a pessoa para as páginas e editar e de excluir receita, respectivamente. Caso não haja nenhuma pessoa logada, nenhum desses botões deve ser exibido.
+If the ID of the person logged into the application is the same ID of the person who created the recipe, an "Edit recipe" button and another "Delete recipe" button must be displayed on the page. These buttons should take the person to the edit and delete recipe pages, respectively. If there is no person logged in, none of these buttons should be displayed.
 
-Esta página deve exibir o título, os ingredientes, e a forma de preparo da receita.
+This page should display the title, ingredients, and preparation method of the recipe.
 
-> Dica: esse é um dos casos no qual você pode utilizar o `authMiddleware` passando `false` para o parâmetro `required`, e passar o conteúdo de `req.user` para a view, o que o permitirá determinar se existe um usuário logado e, portanto, se os botões devem ser exibidos.
+> Tip: this is one of the cases where you can use `authMiddleware` by passing `false` to the `required` parameter, and passing the contents of `req.user` to the view, which will allow you to determine if there is a logged in user and therefore whether the buttons should be displayed.
 
-### 3 - Crie uma página de cadastro de usuários
+### 3 - Create a user registration page
 
-Um usuário precisa ter os campos ID, E-mail, Senha, Nome e Sobrenome. Todos os campos são obrigatórios. O ID deve ser gerado automaticamente, não devendo ser preenchido pelo usuário no momento do cadastro.
+A user must have ID, Email, Password, First Name and Last Name fields. All fields are mandatory. The ID must be automatically generated and must not be filled in by the user at the time of registration.
 
-A validação dos campos deve acontecer no backend, e uma mensagem deve ser enviada ao frontend através de uma propriedade passada para o EJS, da mesma forma que acontece com a view `users/login`.
+Field validation must happen on the backend, and a message must be sent to the frontend through a property passed to the EJS, in the same way as with the `users/login` view.
 
-**⚠️ Atenção ⚠️**: O sistema de autenticação espera que as funções `findUserByEmail` e `findUserById` retornem um objeto com, pelo menos, os campos `email`, `password` e `id`. Se você alterar o nome desses campos, precisará alterar o código de login.
+**⚠️ Attention ⚠️**: The authentication system expects the `findUserByEmail` and `findUserById` functions to return an object with at least `email`, `password` and `id` fields. If you change the name of these fields, you will need to change the login code.
 
-#### Funções administrativas
+#### Administrative functions
 
-> Páginas que **não** podem ser acessadas sem login. Para essas páginas, utilize o `authMiddleware` sem passar parâmetro algum.
+> Pages that **not** can be accessed without login. For these pages, use `authMiddleware` without passing any parameters.
 
-### 4 - Crie uma página de cadastro de receitas
+### 4 - Create a recipe registration page
 
-A página deve ser acessível através do endpoint `/recipes/new`, e o formulário deve ser enviado para o endpoint `POST /recipes`
+The page must be accessible through the `/recipes/new` endpoint, and the form must be sent to the `POST /recipes` endpoint
 
-A receita deve ter os campos ID, Nome, Ingredientes, Modo de preparo e Autor. Sinta-se à vontade para modelar o banco da forma que achar melhor. O ID deve ser gerado automaticamente, não devendo ser preenchido no formulário de cadastro de receita.
+The recipe must have ID, Name, Ingredients, Preparation mode and Author fields. Feel free to model the bank as you see fit. The ID must be generated automatically and must not be filled in the revenue registration form.
 
-O campo dos ingredientes pode ser um campo de texto aberto.
+The ingredients field can be an open text field.
 
-### 5 - Crie uma página de edição de receitas
+### 5 - Create a recipe editing page
 
-A página deve ser acessível através do endpoint `/recipes/:id/edit`, e o formulário deve ser enviado para o endpoint `POST /recipes/:id`.
+The page must be accessible through the `/recipes/:id/edit` endpoint, and the form must be sent to the `POST /recipes/:id` endpoint.
 
-Ao carregar, a página já deve conter as informações atuais daquela receita. Você pode utilizar o atributo `value` dos inputs no HTML para preencher esses campos.
+When loading, the page should already contain the current information for that recipe. You can use the `value` attribute of HTML inputs to populate these fields.
 
-Apenas a pessoa que criou a receita deve ter permissão para edita-la. Para verificar isso, você pode utilizar a propriedade `id` localizada em `req.user` (que é criada pelo `authMiddleware`) e compará-la ao ID de quem criou a receita. Caso os IDs não sejam idênticos, a pessoa deve ser redirecionada à página de visualizar receita utilizando o método `res.redirect` no controller.
+Only the person who created the recipe should have permission to edit it. To verify this, you can use the `id` property located in `req.user` (which is created by `authMiddleware`) and compare it to the ID of whoever created the recipe. If the IDs are not identical, the person must be redirected to the recipe view page using the `res.redirect` method in the controller.
 
-Caso a edição aconteça com sucesso, a pessoa deve ser redirecionada para a página de visualização daquela receita, já com os dados atualizados.
+If the editing is successful, the person must be redirected to the page to view that recipe, with the updated data.
 
-A validação dos campos deve ser realizada no backend.
+Field validation must be performed on the backend.
 
-**⚠️ Atenção ⚠️**: Lembre-se que a tela não é a única forma de acessar os endpoints. Uma requisição feita utilizando o Postman para o endpoint `POST /recipes/:id` **não deve** alterar o ID da receita ou o nome de quem a cadastrou. Para isso, garanta que não está enviando esses campos ao banco de dados na função de update do seu model de receitas.
+**⚠️ Attention ⚠️**: Remember that the screen is not the only way to access endpoints. A request made using Postman to the `POST /recipes/:id` endpoint **should not** change the ID of the recipe or the name of the person who registered it. For this, ensure that you are not sending these fields to the database in the update function of your revenue model.
 
-### 6 - Crie uma página de exclusão de uma receita
+### 6 - Create a recipe delete page
 
-A página deve ser acessível através do endpoint `/recipes/:id/delete`, e só pode ser acessada pela pessoa que cadastrou a receita.
+The page must be accessible through the `/recipes/:id/delete` endpoint, and can only be accessed by the person who entered the recipe.
 
-Ao acessar a página, um formulário deve ser exibido, solicitando a senha da pessoa para confirmar a operação. Esse formulário deve ser enviado para o endpoint `POST /recipes/:id/delete`.
+When accessing the page, a form should be displayed, asking for the person's password to confirm the operation. This form must be sent to the `POST /recipes/:id/delete` endpoint.
 
-A receita só deve ser excluída caso a senha esteja correta. Caso ela esteja incorreta, a pessoa deve ser redirecionada à página de exclusão da receita com a mensagem "Senha incorreta. Por favor, tente novamente".
+The recipe should only be deleted if the password is correct. If it is incorrect, the person should be redirected to the recipe deletion page with the message "Incorrect password. Please try again".
 
-Caso a receita seja excluída com sucesso, a pessoa deve ser redirecionada à página de listagem de receitas.
+If the recipe is successfully deleted, the person should be redirected to the recipe listing page.
 
-### 7 - Cria uma página de pesquisa de receitas
+### 7 - Create a recipe search page
 
-A página deve estar acessível através do endpoint `/recipes/search`.
+The page must be accessible via the `/recipes/search` endpoint.
 
-Um input do tipo texto deve ser exibido juntamente com um botão "Pesquisar". O conteúdo do input deve ser enviado para o endpoint `GET /recipes/search` através do parâmetro `q` na query string.
+A text input must be displayed along with a "Search" button. The content of the input must be sent to the `GET /recipes/search` endpoint via the `q` parameter in the query string.
 
-No backend, o valor do input de texto estará acessível através da propriedade `q` do objeto `req.query`. Caso nada seja informado para pesquisa, a view deve ser renderizada apenas com o campo de pesquisa. Caso um valor seja informado, uma lista semelhante à tela de listar receitas deve ser exibida, contendo o título, nome da pessoa que cadastrou, e um link para cada receita.
+On the backend, the text input value will be accessible through the `query` property of the `req.query` object. If nothing is informed for search, the view must be rendered with only the search field. If a value is informed, a list similar to the recipe list screen should be displayed, containing the title, name of the person who registered, and a link to each recipe.
 
-Para realizar a pesquisa, o controller de receitas deve solicitar ao model que pesquise por receitas **contendo em seu nome** o valor digitado no input de pesquisa.
+To perform the search, the recipe controller must ask the model to search for recipes **containing in its name** the value entered in the search input.
 
-## Bônus
+## bonus
 
-### 8 - Crie uma página de "Minhas receitas"
+### 8 - Create a "My Recipes" page
 
-O link para acessar essa página só deve estar visível para pessoas logadas.
+The link to access this page should only be visible to people logged in.
 
-A página deve estar acessível através do endpoint `/me/recipes`, e deve renderizar uma lista igual à que é exibida na página de listar receitas, populada com as receitas cadastradas pelo usuário logado.
+The page must be accessible through the `/me/recipes` endpoint, and it must render a list similar to the one displayed on the recipes list page, populated with the recipes registered by the logged-in user.
 
-Caso uma pessoa que não está logada acesse essa página, ela deve ser redirecionada para a tela de login. (O middleware `authMiddleware` já implementa essa funcionalidade, então não se esqueça de utilizá-lo aqui.)
+If a person who is not logged in accesses this page, they must be redirected to the login screen. (The `authMiddleware` middleware already implements this functionality, so don't forget to use it here.)
 
-> Lembrete: o ID do usuário logado está disponível em `req.user.id`.
+> Reminder: the ID of the logged in user is available in `req.user.id`.
 
-### 9 - Crie uma página de editar usuário
+### 9 - Create an edit user page
 
-O link para acessar essa página só deve estar visível para pessoas logadas.
+The link to access this page should only be visible to people logged in.
 
-Cada pessoa só deve poder editar o próprio perfil. Para isso, o backend deve extrair o ID do usuário a ser atualizado da propriedade `req.user`, e não do corpo da request. Esse deve ser o ID enviado ao model para realizar a atualização do usuário.
+Each person should only be able to edit their own profile. For this, the backend must extract the user ID to be updated from the `req.user` property, not from the request body. This should be the ID sent to the model to perform the user update.
 
-Esta página deve estar acessível através do endpoint `/me/edit`, e o formulário deve ser enviado para o endpoint `POST /me`.
+This page must be accessible through the `/me/edit` endpoint, and the form must be sent to the `POST /me` endpoint.
 
-Caso uma pessoa não logada tente acessar a página, ela deve ser redirecionada para o login. (O middleware `authMiddleware` já implementa essa funcionalidade, então não se esqueça de utilizá-lo aqui.)
+If a person not logged in tries to access the page, they must be redirected to login. (The `authMiddleware` middleware already implements this functionality, so don't forget to use it here.)
 
-O ID da pessoa não deve poder ser editado. Nem através da tela, nem através de uma request realizada pelo Postman. Para isso, garanta que seu model não envia esse campo para o banco de dados.
+The person ID must not be editable. Neither through the screen, nor through a request made by Postman. For this, ensure that your model does not send this field to the database.
 
-### 10 - Utilize `includes` do EJS para renderizar a navbar das páginas
+### 10 - Use EJS `includes` to render the pages navbar
 
-Parte do HTML ficará repetido em todas as páginas como, por exemplo, a barra de navegação.
+Some of the HTML will be repeated on all pages, such as the navigation bar.
 
-Para esses conteúdos repetitivos, você pode utilizar `includes` do EJS.
+For such repetitive content, you can use EJS `includes`.
 
-A [documentação do EJS](https://ejs.co/#docs) (dê um Ctrl + F e pesquise por "includes") fala brevemente sobre o use de includes nas suas views.
+The [EJS documentation](https://ejs.co/#docs) (press Ctrl + F and search for "includes") talks briefly about using includes in your views.
 
 ---
