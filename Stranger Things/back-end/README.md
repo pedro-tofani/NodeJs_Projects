@@ -1,6 +1,5 @@
 ## Requirements
-
-### 6 - Deploy Heroku
+Deploy Heroku
 
 To deploy my backend, I did the following procedure:
 
