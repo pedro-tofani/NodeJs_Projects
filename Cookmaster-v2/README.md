@@ -1,33 +1,33 @@
-# Boas vindas ao projeto Cookmaster V2!
+# Welcome to the Cookmaster V2 project!
 
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por Slack! #vqv 🚀
+You already use GitHub daily to develop the exercises, right? Now, to develop the projects, you must follow the instructions below. Stay tuned every step of the way, and if you have any questions, let us know via Slack! #vqv 🚀
 
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um Pull Request para colocar seus códigos.
-## Requisitos do projeto
+Here you will find details on how to structure your project's development from this repository, using a specific branch and a Pull Request to place your code.
+## Project requirements
 
-### 1 - Todos os seus endpoints devem estar no padrão REST
+### 1 - All your endpoints must be REST standard
 
-- Use os verbos HTTP adequados para cada operação.
+- Use the appropriate HTTP verbs for each operation.
 
-- Agrupe e padronize suas URL em cada recurso.
+- Group and standardize your URLs on each resource.
 
-- Garanta que seus endpoints sempre retornem uma resposta, havendo sucesso nas operações ou não.
+- Ensure that your endpoints always return a response, whether the operations are successful or not.
 
-- Retorne os códigos de status corretos (recurso criado, erro de validação, autorização, etc).
+- Return correct status codes (resource created, validation error, authorization, etc).
 
-### 2 - Crie um endpoint para o cadastro de usuários
+### 2 - Create an endpoint for user registration
 
-- A rota deve ser (`/users`).
+- The route must be (`/users`).
 
-- No banco um usuário precisa ter os campos Email, Senha, Nome e Role.
+- In the bank, a user must have the fields Email, Password, Name and Role.
 
-- Para criar um usuário através da API, todos os campos são obrigatórios, com exceção do Role.
+- To create a user through the API, all fields are mandatory, with the exception of Role.
 
-- O campo Email deve ser único.
+- The Email field must be unique.
 
-- Usuários criados através desse endpoint devem ter seu campo Role com o atributo _user_, ou seja, devem ser usuários comuns, e não admins.
+- Users created through this endpoint must have their Role field with the _user_ attribute, that is, they must be regular users, not admins.
 
-- O body da requisição deve conter o seguinte formato:
+- The request body must contain the following format:
 
   ```json
   {
@@ -37,15 +37,15 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
   }
   ```
 
-### 3 - Crie um endpoint para o login de usuários
+### 3 - Create an endpoint for user login
 
-- A rota deve ser (`/login`).
+- The route must be (`/login`).
 
-- A rota deve receber os campos Email e Senha e esses campos devem ser validados no banco de dados.
+- The route must receive the Email and Password fields and these fields must be validated in the database.
 
-- Um token `JWT` deve ser gerado e retornado caso haja sucesso no login. No seu payload deve estar presente o id, email e role do usuário.
+- A `JWT` token must be generated and returned if the login is successful. The user's id, email and role must be present in your payload.
 
-- O body da requisição deve conter o seguinte formato:
+- The request body must contain the following format:
 
   ```json
   {
@@ -54,51 +54,15 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
   }
   ```
 
-### 4 - Crie um endpoint para o cadastro de receitas
+### 4 - Create an endpoint for the registration of recipes
 
-- A rota deve ser (`/recipes`).
+- The route must be (`/recipes`).
 
-- A receita só pode ser criada caso o usuário esteja logado e o token `JWT` validado.
+- The recipe can only be created if the user is logged in and the `JWT` token is validated.
 
-- No banco, a receita deve ter os campos Nome, Ingredientes, Modo de preparo, URL da imagem e Id do Autor.
+- In the bank, the recipe must have the Name, Ingredients, Preparation method, Image URL and Author Id fields.
 
-- Nome, ingredientes e modo de preparo devem ser recebidos no corpo da requisição, com o seguinte formato:
-
-  ```json
-  {
-    "name": "string",
-    "ingredients": "string",
-    "preparation": "string"
-  }
-  ```
-
-- O campo dos ingredientes pode ser um campo de texto aberto.
-
-- O campo ID do autor, deve ser preenchido automaticamente com o ID do usuário logado, que deve ser extraído do token JWT.
-
-- A URL da imagem será preenchida através de outro endpoint
-
-### 5 - Crie um endpoint para a listagem de receitas
-
-- A rota deve ser (`/recipes`).
-
-- A rota pode ser acessada por usuários logados ou não
-
-### 6 - Crie um endpoint para visualizar uma receita específica
-
-- A rota deve ser (`/recipes/:id`).
-
-- A rota pode ser acessada por usuários logados ou não
-
-### 7 - Crie um endpoint para a edição de uma receita
-
-- A rota deve ser (`/recipes/:id`).
-
-- A receita só pode ser atualizada caso o usuário esteja logado e o token `JWT` validado.
-
-- A receita só pode ser atualizada caso pertença ao usuário logado, ou caso esse usuário seja um admin.
-
-- O corpo da requisição deve receber o seguinte formato:
+- Name, ingredients and method of preparation must be received in the body of the request, with the following format:
 
   ```json
   {
@@ -108,36 +72,72 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
   }
   ```
 
-### 8 - Crie um endpoint para a exclusão de uma receita
+- The ingredients field can be an open text field.
 
-- A rota deve ser (`/recipes/:id`).
+- The Author ID field must be automatically filled in with the ID of the logged in user, which must be extracted from the JWT token.
 
-- A receita só pode ser excluída caso o usuário esteja logado e o token `JWT` validado.
+- Image URL will be populated through another endpoint
 
-- A receita só pode ser excluída caso pertença ao usuário logado, ou caso o usuário logado seja um admin.
+### 5 - Create an endpoint for the recipe listing
 
-### 9 - Crie um endpoint para a adição de uma imagem a uma receita
+- The route must be (`/recipes`).
 
-- A rota deve ser (`/recipes/:id/image/`).
+- The route can be accessed by users logged in or not
 
-- A imagem deve ser lida do campo `image`.
+### 6 - Create an endpoint to view a specific recipe
 
-- O endpoint deve aceitar requisições no formato `multipart/form-data`.
+- The route must be (`/recipes/:id`).
 
-- A receita só pode ser atualizada caso o usuário esteja logado e o token `JWT` validado.
+- The route can be accessed by users logged in or not
 
-- A receita só pode ser atualizada caso pertença ao usuário logado ou caso o usuário logado seja admin.
+### 7 - Create an endpoint for editing a recipe
 
-- O upload da imagem deverá ser feito utilizando o `Multer`.
+- The route must be (`/recipes/:id`).
 
-- O nome do arquivo deve ser o ID da receita, sem extensão. As imagens devem estar disponíveis através da rota `/images/<id-da-receita>` na API.
+- The recipe can only be updated if the user is logged in and the `JWT` token is validated.
 
-- A URL completa para acessar a imagem através da API deve ser gravada no banco de dados, junto com os dados da receita.
+- The recipe can only be updated if it belongs to the logged in user, or if that user is an admin.
 
-### 10 - Permissões do usuário admin
+- The request body must receive the following format:
 
-- Por padrão, deve existir no banco de dados ao menos um usuário com a Role _admin_.
+  ```json
+  {
+    "name": "string",
+    "ingredients": "string",
+    "preparation": "string"
+  }
+  ```
 
-- Esse usuário tem o poder de criar, deletar, atualizar ou remover qualquer receita, independente de quem a cadastrou.
+### 8 - Create an endpoint for the deletion of a recipe
 
-- Crie um script na raiz do seu projeto com a extensão `.sql`, caso utilize o MySQL, ou `.js`, caso utilize o mongodb. Este arquivo deve inicializar o banco de dados e cadastrar um usuário admin com o email `root@email.com` e a senha `admin`.
+- The route must be (`/recipes/:id`).
+
+- The recipe can only be deleted if the user is logged in and the `JWT` token is validated.
+
+- The recipe can only be deleted if it belongs to the logged-in user, or if the logged-in user is an admin.
+
+### 9 - Create an endpoint for adding an image to a recipe
+
+- The route must be (`/recipes/:id/image/`).
+
+- The image must be read from the `image` field.
+
+- The endpoint must accept requests in `multipart/form-data` format.
+
+- The recipe can only be updated if the user is logged in and the `JWT` token is validated.
+
+- The recipe can only be updated if it belongs to the logged in user or if the logged in user is admin.
+
+- The image must be uploaded using `Multer`.
+
+- The file name must be the recipe ID, without extension. Images must be available via the `/images/<recipe-id>` route in the API.
+
+- The full URL to access the image through the API must be recorded in the database, along with the recipe data.
+
+### 10 - admin user permissions
+
+- By default, there must be at least one user in the database with the Role _admin_.
+
+- This user has the power to create, delete, update or remove any recipe, regardless of who registered it.
+
+- Create a script in the root of your project with the extension `.sql`, if you use MySQL, or `.js`, if you use mongodb. This file should initialize the database and register an admin user with the email address `root@email.com` and the password `admin`.
