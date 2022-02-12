@@ -1,281 +1,281 @@
-## Requisitos Entrega 1
+## Requirements Delivery 1
 
-##### Requisitos Gerais
+##### General requirements
 
-1. Os `endpoints` da API devem ser criados utilizando o padrão REST;
+1. API endpoints must be created using the REST pattern;
 
-2. O back-end deve utilizar o banco de dados `MySQL`;
+2. The backend must use the `MySQL` database;
 
-3. O back-end deve ser construído seguindo o padrão arquitetural `MSC`;
+3. The backend must be built following the `MSC` architectural pattern;
 
-4. Disponibilize um script SQL na raiz do projeto com comandos para a criação do banco de dados, das tabelas, inserção dos dados iniciais e criação do admin padrão. O script deve ser nomeado `script.sql`.
+4. Make an SQL script available at the root of the project with commands for creating the database, tables, inserting initial data and creating the default admin. The script must be named `script.sql`.
 
-##### Página de Login
+##### Login Page
 
-Esta tela possui o nome `Login` no protótipo.
+This screen is named `Login` in the prototype.
 
-5. Todos os elementos da tela devem respeitar os atributos descritos no protótipo;
+5. All screen elements must respect the attributes described in the prototype;
 
-6. A rota da tela deve ser `/login`;
+6. The screen route should be `/login`;
 
-7. A pessoa deve conseguir escrever seu email no input de email;
+7. The person must be able to write their email in the email input;
 
-8. A pessoa deve conseguir escrever sua senha no input de senha;
+8. The person must be able to write their password in the password input;
 
-9. O formulário só fica válido após um email válido e uma senha de, no mínimo, 6 números serem preenchidos. Um email válido possui a forma `<nome>@<domínio>`. Caso o formulário esteja inválido, o botão de submeter deve estar desativado. Caso contrário, deve estar ativado;
+9. The form is only valid after a valid email address and a password of at least 6 numbers are filled in. A valid email has the form `<name>@<domain>`. If the form is invalid, the submit button must be disabled. Otherwise, it must be enabled;
 
-10. Após a submissão bem sucedida do formulário, o token que identifica o usuário recebido na resposta deve ser salvo no `localStorage`. Esse token deve ser utilizado para futuras requisições à API;
+10. After successful form submission, the token identifying the user received in the response must be saved in `localStorage`. This token must be used for future API requests;
 
-11. Após a submissão bem sucedida do formulário, se o usuário for do tipo `administrador`, a pessoa deve ser redirecionada para a página **Admin - Home**;
+11. After successful submission of the form, if the user is of type `administrator`, the person should be redirected to the page **Admin - Home**;
 
-12. Após a submissão bem sucedida do formulário, se o usuário for do tipo `cliente`, a pessoa deve ser redirecionada para a página **Cliente - Produtos**;
+12. After successful submission of the form, if the user is a `client`, the person must be redirected to the **Customer - Products** page;
 
-13. Deve existir um botão para o usuário se registrar com o texto `"Ainda não tenho conta"`. Ao ser clicado, a pessoa deve ser redirecionada para a página **Registro**.
+13. There should be a button for the user to register with the text `"I don't have an account yet"`. When clicked, the person should be redirected to the **Registration** page.
 
-##### Página de Registro
+##### Registration Page
 
-Esta tela possui o nome `Registro` no protótipo.
+This screen has the name `Record` in the prototype.
 
-14. Todos os elementos devem respeitar os atributos descritos no protótipo;
+14. All elements must respect the attributes described in the prototype;
 
-15. A rota da tela deve ser `/register`;
+15. The screen route should be `/register`;
 
-16. A tela deve mostrar um formulário com os seguintes campos:
+16. The screen should show a form with the following fields:
 
-    - **nome** - deve conter, no mínimo, 12 letras, sem números ou caracteres especiais;
+    - **name** - must contain at least 12 letters, without numbers or special characters;
 
-    - **email** - deve conter um email válido. Um email válido possui o formato `<nome>@<domínio>`;
+    - **email** - must contain a valid email address. A valid email has the form `<name>@<domain>`;
 
-    - **senha** - composta por, no mínimo, 6 números;
+    - **password** - composed of at least 6 numbers;
 
-    - **quero vender** - um checkbox opcional, desmarcado por padrão.
+    - **want to sell** - an optional checkbox, unchecked by default.
 
-17. Caso a opção `Quero vender` esteja marcada, o usuário deve ser cadastrado com um papel de **admin**. Caso contrário, será um **client**;
+17. If the option `I want to sell` is checked, the user must be registered with a role of **admin**. Otherwise it will be a **client**;
 
-18. Caso os dados inseridos no formulário sejam inválidos, o botão de submeter deve estar desativado. Caso contrário, deve estar ativado;
+18. If the data entered in the form is invalid, the submit button must be disabled. Otherwise, it must be enabled;
 
-19. Caso a opção `Quero vender` esteja marcada, ao clicar no botão `"Cadastrar"`, a pessoa deve ser redirecionada para a página **Admin - Home**. Caso contrario, deve ser redirecionada para a página de **Cliente - Produtos**.
+19. If the `I want to sell` option is checked, when clicking on the `"Register"` button, the person must be redirected to the **Admin - Home** page. Otherwise, it must be redirected to the **Customer - Products** page.
 
-## Cliente
+## Client
 
-##### Menu superior
+##### Top menu
 
-20. Todos os elementos devem respeitar os atributos descritos no protótipo para o menu superior;
+20. All elements must respect the attributes described in the prototype for the top menu;
 
-21. O menu superior deve sempre ser exibido em todas as telas;
+21. The top menu must always be displayed on all screens;
 
-22. O título correspondente à tela em que o usuário se encontra deve ser mostrado, confome protótipos;
+22. The title corresponding to the screen the user is on must be shown, according to prototypes;
 
-23. Deve haver um ícone do tipo "hambúrguer" no canto superior esquerdo do menu superior. Quando clicado, caso o menu lateral esteja oculto, deve ser mostrado. Caso contrário, o menu lateral deve ser escondido.
+23. There should be a "hamburger" icon in the top left corner of the top menu. When clicked, if the side menu is hidden, it should be shown. Otherwise, the side menu must be hidden.
 
-##### Menu lateral
+##### Lateral menu
 
-24. Todos os elementos devem respeitar os atributos descritos no protótipo para o menu lateral;
+24. All elements must respect the attributes described in the prototype for the side menu;
 
-25. Deve conter quatro itens: `"Produtos"`, `"Meus pedidos"`, `"Meu Perfil"` e `"Sair"`;
+25. It must contain four items: `"Products"`, `"My Orders"`, `"My Profile"` and `"Exit"`;
 
-26. Ao clicar no item `"Produtos"`, a pessoa deve ser redirecionada para a tela **Cliente - Produtos**;
+26. When clicking on the item `"Products"`, the person must be redirected to the **Customer - Products** screen;
 
-27. Ao clicar no item `"Meus pedidos"`, a pessoa deve ser redirecionada para a tela **Cliente - Meus Pedidos**;
+27. When clicking on the item `"My Orders"`, the person must be redirected to the **Customer - My Orders** screen;
 
-28. Ao clicar no item `"Meu Perfil"`, a pessoa deve ser redirecionada para tela **Cliente - Meu Perfil**;
+28. When clicking on the item `"My Profile"`, the person must be redirected to the **Customer - My Profile** screen;
 
-29. Ao clicar no item `"Sair"`, a pessoa deve ser redirecionada para a tela **Login** e ser deslogada.
+29. When clicking on the `"Logout"` item, the person must be redirected to the **Login** screen and be logged out.
 
-##### Tela de perfil
+##### Profile Screen
 
-Esta tela possui o nome `Cliente - Meu Pefil` no protótipo.
+This screen has the name `Customer - My Profile` in the prototype.
 
-30. Todos os elementos devem respeitar os atributos descritos no protótipo;
+30. All elements must respect the attributes described in the prototype;
 
-31. A rota da tela deve ser `/profile`;
+31. The screen route should be `/profile`;
 
-32. Deve ter dois campos de texto: um para o `email` e o outro para o `nome`. Apenas o `nome` pode ser alterado. Dessa forma, o campo `email` deve ser `read-only`;
+32. It should have two text fields: one for `email` and one for `name`. Only the `name` can be changed. Therefore, the `email` field must be `read-only`;
 
-33. Deve ter um botão `"Salvar"`". Caso o usuário tenha editado o nome, o botão deve ser habilitado. Caso contrário, o botão deve estar desabilitado;
+33. There must be a `"Save"` button. If the user has edited the name, the button must be enabled. Otherwise, the button must be disabled;
 
-34. Ao clicar no botão `"Salvar"`, uma requisição deve ser feita à API e o nome da pessoa deve ser atualizado no banco de dados;
+34. When clicking the `"Save"` button, a request must be made to the API and the person's name must be updated in the database;
 
-35. Ao entrar na tela, se o usuário não estiver logado, deve ser redirecionado para a tela **Login**.
+35. When entering the screen, if the user is not logged in, he must be redirected to the **Login** screen.
 
-##### Tela de produtos
+##### Products screen
 
-Esta tela possui o nome `Cliente - Produtos` no protótipo.
+This screen has the name `Customer - Products` in the prototype.
 
-36. Todos os elementos devem respeitar os atributos descritos no protótipo para a tela de produtos;
+36. All elements must respect the attributes described in the prototype for the products screen;
 
-37. A rota da tela deve ser `/products`;
+37. The screen route should be `/products`;
 
-38. Nessa tela, os produtos devem ser organizados em "cards", e deve haver um card para cada produto;
+38. On this screen, the products must be organized in "cards", and there must be a card for each product;
 
-39. Os cards devem conter os seguintes dados do produto:
+39. Cards must contain the following product data:
 
-    - Foto;
+    - Photograph;
 
-    - Nome do produto;
+    - Product's name;
 
-    - Preço unitário;
+    - Unit price;
 
-    - Quantidade atual inserida no carrinho;
+    - Current quantity entered in the cart;
 
-    - Botão de adicionar (`+`) e de remover (`-`) uma unidade do produto no carrinho.
+    - Button to add (`+`) and remove (`-`) a product unit in the cart.
 
-40. Ao clicar no botão `+`, a quantidade do produto deve aumentar em 1;
+40. When clicking on the `+` button, the quantity of the product must increase by 1;
 
-41. Ao clicar no botão `-`, a quantidade do produto deve diminuir em 1, limitado a 0;
+41. When clicking on the `-` button, the quantity of the product must decrease by 1, limited to 0;
 
-43. Caso a pessoa atualize o browser, o carrinho deve ser mantido;
+43. If the person updates the browser, the cart must be kept;
 
-43. O preço unitário deve seguir o padrão `R$ 00,00`;
+43. The unit price must follow the standard `R$ 00.00`;
 
-44. Quando a quantidade mostrada no card do produto chegar a 0, o produto deve ser removido do carrinho;
+44. When the quantity shown on the product card reaches 0, the product must be removed from the cart;
 
-45. Deve ter um botão `"Ver carrinho"`. Esse botão também deve exibir o **valor total** dos produtos no carrinho;
+45. There should be a `"View Cart"` button. This button should also display the **total amount** of the products in the cart;
 
-46. O **valor total** mostrado no botão `"Ver carrinho"` deve ser alterado dinamicamente, ou seja, ao adicionar ou remover um produto no carrinho, o valor total deve ser atualizado;
+46. ​​The **total amount** shown in the `"View cart"` button must be dynamically changed, that is, when adding or removing a product in the cart, the total value must be updated;
 
-47. Ao clicar no botão `"Ver carrinho"`, a pessoa deve ser redirecionada para a página **Cliente - Checkout**.
+47. By clicking on the `"View Cart"` button, the person should be redirected to the **Customer - Checkout** page.
 
-48. Ao entrar na tela, se o usuário não estiver logado, deve ser redirecionado para a tela **Login**.
+48. When entering the screen, if the user is not logged in, he must be redirected to the **Login** screen.
 
 ---
 
-## Requisitos Entrega 2
+## Requirements Delivery 2
 
-##### Requisitos Gerais
+##### General requirements
 
-49. A cobertura de testes unitários deve ser de, no mínimo, 90%;
+49. Unit test coverage must be at least 90%;
 
-##### Tela de Checkout
+##### Checkout Screen
 
-Esta tela possui o nome `Cliente - Checkout` no protótipo.
+This screen has the name `Customer - Checkout` in the prototype.
 
-50. Todos os elementos devem respeitar os atributos descritos no protótipo para a tela;
+50. All elements must respect the attributes described in the prototype for the screen;
 
-51. A rota da tela deve ser `/checkout`;
+51. The screen route should be `/checkout`;
 
-52. Caso a pessoa atualize o browser, o carrinho deve ser mantido;
+52. If the person updates the browser, the cart must be kept;
 
-54. Deve ter uma lista dos produtos selecionados com a seguinte estrutura: `quantidade do produto -- nome do produto -- valor total do produto`, sendo o valor total calculado por **quantidade * preço unitário**;
+54. It should have a list of selected products with the following structure: `product quantity -- product name -- product total value`, with the total value calculated by **quantity * unit price**;
 
-55. Ao lado de cada produto deve haver um botão que, quando clicado, exclui este produto do carrinho;
+55. Next to each product there must be a button that, when clicked, deletes this product from the cart;
 
-56. Abaixo da lista, mostre o **valor total do pedido**, no seguinte formato: `Total: R$ 0,00`. O valor total do pedido é calculado a partir da **soma de todos os valores totais dos produtos**;
+56. Below the list, show the **total amount of the order**, in the following format: `Total: R$ 0.00`. The total value of the order is calculated from the **sum of all the total values ​​of the products**;
 
-57. Deve existir um formulário para a pessoa digitar o endereço de entrega dos produtos. O formulário deve conter dois campos de texto: um para a **rua** e o outro para o **número da casa**;
+57. There must be a form for the person to enter the delivery address of the products. The form must contain two text fields: one for the **street** and the other for the **house number**;
 
-58. Deve ter um botão `"Finalizar Pedido"`. O botão deve estar habilitado **apenas** se o valor total do pedido for **maior que zero** e o endereço de entrega estiver preenchido;
+58. It should have a `"Checkout"` button. The button must be enabled **only** if the total value of the order is **greater than zero** and the delivery address is filled in;
 
-59. Ao clicar em "`Finalizar pedido`", caso a operação dê certo, uma mensagem de sucesso deve ser exibida e a pessoa deve ser redirecionada para a página **Cliente - Produtos**. Caso contrário, deve ser exibido uma mensagem de erro;
+59. When clicking on "`Finish order`", if the operation is successful, a success message should be displayed and the person should be redirected to the **Customer - Products** page. Otherwise, an error message should be displayed;
 
-60. Quando um pedido for finalizado, o carrinho deve ser esvaziado;
+60. When an order is completed, the cart must be emptied;
 
-61. Ao entrar na tela, se o usuário não estiver logado, deve ser redirecionado para a tela **Login**.
+61. When entering the screen, if the user is not logged in, he must be redirected to the **Login** screen.
 
-##### Tela de Meus Pedidos
+##### My Orders Screen
 
-Esta tela possui o nome `Cliente - Meus Pedidos` no protótipo.
+This screen has the name `Customer - My Orders` in the prototype.
 
-62. Todos os elementos devem respeitar os atributos descritos no protótipo para a tela de meus pedidos;
+62. All elements must respect the attributes described in the prototype for the screen of my orders;
 
-63. A rota da tela deve ser `/orders`;
+63. The screen route must be `/orders`;
 
-64. Deve conter uma lista de cards, onde cada card é um pedido. Cada card deve conter as seguintes informações: `número do pedido`, `data de realização` e `valor total do pedido`. Para a data de realização do pedido, mostre apenas o dia e o mês;
+64. Must contain a list of cards, where each card is an order. Each card must contain the following information: `order number`, `completion date` and `total order value`. For the order date, show only the day and month;
 
-65. A listagem deve mostrar os pedidos mais recentes primeiro;
+65. The listing must show the most recent orders first;
 
-66. Ao clicar no card, a pessoa deve ser redirecionada para a página **Cliente - Detalhes do Pedido**.
+66. When clicking on the card, the person should be redirected to the **Customer - Order Details** page.
 
-67. Ao entrar na tela, se o usuário não estiver logado, deve ser redirecionado para a tela **Login**.
+67. When entering the screen, if the user is not logged in, he must be redirected to the **Login** screen.
 
-##### Tela de detalhes de pedido
+##### Order details screen
 
-Esta tela possui o nome `Cliente - Detalhes de Pedido` no protótipo.
+This screen has the name `Customer - Order Details` in the prototype.
 
-68. Todos os elementos devem respeitar os atributos descritos no protótipo para a tela de detalhes do pedido;
+68. All elements must respect the attributes described in the prototype for the order details screen;
 
-69. A rota da página deve ser `/orders/:numero-do-pedido`;
+69. The page route must be `/orders/:order-number`;
 
-70. Mostre o `número do pedido` e a `data de realização`. Para a data de realização do pedido, mostre apenas o dia e o mês;
+70. Show the `order number` and the `completion date`. For the order date, show only the day and month;
 
-71. Deve ter uma lista dos produtos selecionados com a seguinte estrutura: `quantidade do produto -- nome do produto -- valor total do produto`. Sendo o valor total calculado por **quantidade * preço unitário**;
+71. It should have a list of selected products with the following structure: `product quantity -- product name -- total product value`. The total value being calculated by **quantity * unit price**;
 
-72. Abaixo da lista, mostre o `valor total do pedido`. O valor total do pedido é calculado a partir da **soma de todos os valores totais dos produtos**.
+72. Below the list, show the `total order amount`. The total value of the order is calculated from the **sum of all the total values ​​of the products**.
 
-73. Ao entrar na tela, se o usuário não estiver logado, deve ser redirecionado para a tela **Login**.
+73. When entering the screen, if the user is not logged in, he must be redirected to the **Login** screen.
 
 ## Admin
 
-##### Menu lateral
+##### Lateral menu
 
-74. Todos os elementos devem respeitar os atributos descritos no protótipo para o menu lateral;
+74. All elements must respect the attributes described in the prototype for the side menu;
 
-75. Deve conter três itens: `"Pedidos"`", `"Perfil"`" e "`Sair`";
+75. It must contain three items: `"Orders"`", `"Profile"`" and "`Exit`";
 
-76. Ao clicar no item `"Pedidos"`, a pessoa deve ser redirecionada para a tela **Admin - Home**;
+76. When clicking on the item `"Orders"`, the person should be redirected to the **Admin - Home** screen;
 
-77. Ao clicar no item `"Perfil"`, a pessoa deve ser redirecionada para tela **Admin - Perfil**;
+77. When clicking on the `"Profile"` item, the person must be redirected to the **Admin - Profile** screen;
 
-78. Ao clicar no item `"Sair"`, a pessoa deve ser redirecionada para a tela **Login** e ser deslogada.
+78. When clicking on the `"Logout"` item, the person must be redirected to the **Login** screen and be logged out.
 
-##### Tela de perfil
+##### Profile Screen
 
-Esta tela possui o nome `Admin - Perfil` no protótipo.
+This screen is named `Admin - Profile` in the prototype.
 
-79. Todos os elementos devem respeitar os atributos descritos no protótipo para a tela de perfil;
+79. All elements must respect the attributes described in the prototype for the profile screen;
 
-80. A rota da página deve ser `/admin/profile`;
+80. The page route must be `/admin/profile`;
 
-81. Mostrar o `email` e o `nome` do usuário. Não permita que o usuário edite os dados;
+81. Display the user's `email` and `name`. Do not allow the user to edit the data;
 
-82. Ao entrar na tela, se o usuário não estiver logado, deve ser redirecionado para a tela **Login**.
+82. When entering the screen, if the user is not logged in, he must be redirected to the **Login** screen.
 
-### Tela de Pedidos
+### Orders Screen
 
-Esta tela possui o nome `Admin - Pedidos` no protótipo.
+This screen has the name `Admin - Orders` in the prototype.
 
-83. Todos os elementos devem respeitar os atributos descritos no protótipo para a tela de pedidos;
+83. All elements must respect the attributes described in the prototype for the order screen;
 
-84. A rota da página deve ser `/admin/orders`;
+84. The page route must be `/admin/orders`;
 
-85. Essa tela deve mostrar todos os pedidos feitos;
+85. This screen should show all orders placed;
 
-86. Os pedidos pendentes devem ter o label `Pendentes`, ao passo que os pedidos entregues devem ter o label `Entregue`;
+86. Pending orders must be labeled `Pending`, while delivered orders must have the label `Delivered`;
 
-87. Pedidos pendentes devem ser listados antes dos pedidos entregues
+87. Pending orders must be listed before delivered orders
 
-88. Os "cards" dos pedidos devem conter as informações:
+88. Order cards must contain the information:
 
-    - Número do pedido;
+    - Request number;
 
-    - Endereço para entrega;
+    - Delivery address;
 
-    - Valor total do pedido.
+    - Total value of the order.
 
-89. Ao clicar em qualquer parte do card do pedido, a pessoa deve ser redirecionada para a tela `Admin - Detalhe de Pedido`.
+89. When clicking on any part of the order card, the person should be redirected to the `Admin - Order Detail` screen.
 
-### Tela de Detalhes de Pedido
+### Order Details Screen
 
-Essa página corresponde às páginas `Admin - Detalhes de Pedido - Pendente` e `Admin - Detalhes de Pedido - Entregue` no protótipo.
+This page corresponds to the `Admin - Order Details - Pending` and `Admin - Order Details - Delivered` pages in the prototype.
 
-90. Todos os elementos devem respeitar os atributos descritos no protótipo para a tela de detalhes do pedido;
+90. All elements must respect the attributes described in the prototype for the order details screen;
 
-91. A rota da página deve ser `/admin/orders/:id`;
+91. The page route must be `/admin/orders/:id`;
 
-92. No cabeçalho, mostre o `número do pedido` e o `status` atual - Pendente ou Entregue;
+92. In the header, show the `order number` and the current `status` - Pending or Delivered;
 
-93. Deve ter uma listagem com os produtos do pedido, onde cada linha deve conter:
+93. It must have a listing with the products of the order, where each line must contain:
 
-    - Quantidade;
+    - The amount;
 
-    - Nome do produto;
+    - Product's name;
 
-    - Valor total do produto.
+    - Total value of the product.
 
-94. O `preço total` do produto é calculado usando **quantidade * preço unitário**;
+94. The `total price` of the product is calculated using **quantity * unit price**;
 
-95. Mostre também o `valor total do pedido`. O valor total do pedido é calculado a partir da **soma de todos os valores totais dos produtos**;
+95. Also show the `total order amount`. The total value of the order is calculated from the **sum of all the total values ​​of the products**;
 
-96. Caso o status do pedido seja **pendente**, um botão para marcar o pedido como entregue deve ser exibido. Caso contrário, não exiba o botão;
+96. If the order status is **pending**, a button to mark the order as delivered should be displayed. Otherwise, do not display the button;
 
-97. Ao clicar no botão `"Marcar pedido como entregue"`, o status desse pedido deve mudar para `Entregue` e o botão deve desaparecer.
+97. When you click the `"Mark order as delivered"` button, the status of that order should change to `Delivered` and the button should disappear.
