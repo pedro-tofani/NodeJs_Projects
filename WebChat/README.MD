@@ -1,46 +1,43 @@
+## Mandatory Requirements:
 
-## Requisitos Obrigatórios:
+### 1 - Your application must have a backend that allows several people to connect simultaneously and send messages in a chat
 
-### 1 - Sua aplicação deverá ter um back-end que permite que várias pessoas se conectem simultâneamente e mandem mensagens em um chat
+##### The following checks will be done:
 
-##### As seguintes verificações serão feitas:
+- The application must allow several clients to connect to a chat at the same time;
 
-- A aplicação deverá permitir que vários clientes se conectem a um chat ao mesmo tempo;
+- Each customer connected to the chat must receive all messages that have already been sent in the chat;
 
-- Cada cliente conectado ao chat deverá receber todas as mensagens que já foram enviadas no chat;
+- Every message that a customer receives must contain information about who sent it, date-time of sending and the content of the message itself. The date-time of messages must be determined by the time they are saved in the database (see requirement 3).
 
-- Toda mensagem que um cliente recebe deve conter as informações acerca de quem a enviou, data-hora do envio e o conteúdo da mensagem em si. A data-hora das mensagens deve ser determinada pelo momento em que são salvas no banco de dados (ver requisito 3).
+### 2 - Your application must have a front-end where the user can interact with the chat
 
-### 2 - Sua aplicação deverá ter um front-end em que quem usa consiga interagir com o chat
+##### The following checks will be done:
 
-##### As seguintes verificações serão feitas:
+- The front-end should display all messages already sent in the chat, keeping the most recent ones at the bottom of the screen;
 
-- O front-end deve exibir todas as mensagens já enviadas no chat, mantendo as mais recentes na parte debaixo da tela;
+- The front-end must have a text box through which the user can send messages to the chat;
 
-- O front-end deve ter uma caixa de texto através da qual quem usa consiga enviar mensagens para o chat;
+- The front-end must allow the user to choose a nickname (_nickname_) for himself. For the client to be able to choose a nickname, it must have a text field and a button on the front-end. The text field will be where the customer will type the _nickname_ they want. After choosing the _nickname_, the client must click on the button for the data to be saved in `MongoDB`.
 
-- O front-end deve permitir a quem usa escolher um apelido (_nickname_) para si. Para que o cliente consiga escolher um apelido deve ter um campo de texto e um botão no front-end. O campo de texto será onde o cliente digitará o _nickname_ que deseja. Após escolher o _nickname_, o cliente deverá clicar no botão para que o dado seja salvo no `MongoDB`.
+### 3 - The chat history should persist even if the chat server is closed and reopened
 
-### 3 - O histórico do chat deverá persistir mesmo que o servidor do chat seja fechado e reaberto
+##### The following checks will be done:
 
-##### As seguintes verificações serão feitas:
+- You must configure a MongoDB database, where each line contains a sent message;
 
-- Você deve configurar um banco de dados MongoDB, onde cada linha contém uma mensagem enviada;
+- Your database must save the nickname of the sender, the message itself and a _timestamp_ with seconds precision of when it was saved in the database.
 
-- O seu banco de dados deve salvar o nickname de quem enviou a mensagem, a mensagem em si e uma _timestamp_ com precisão de segundos de quando ela foi salva no banco.
+### 4 - Your application should send a _push notification_ to customers when a new message arrives in the chat
 
-### 4 - Sua aplicação deve enviar uma _push notification_ aos clientes quando uma nova mensagem chegar no chat
+##### The following checks will be done:
 
-##### As seguintes verificações serão feitas:
+- When a new message arrives in the chat, all customers should receive a push notification with such an alert.
 
-- Quando uma nova mensagem chegar no chat, todos os clientes deverão receber uma push notification com tal alerta.
+### 5 - Your backend must have 100% automated testing coverage
 
-### 5 - O seu back-end deve ter 100% de cobertura de testes automatizados
+##### The following checks will be done:
 
-##### As seguintes verificações serão feitas:
+- Backend test coverage must be 100%;
 
-- A cobertura de testes do back-end deve ser de 100%;
-
-- Se qualquer uma das funções do seu back-end tiver o conteúdo apagado os seus testes devem quebrar.
-
-
+- If any of your backend functions have their content erased your tests should break.
