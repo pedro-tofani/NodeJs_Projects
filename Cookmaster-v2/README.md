@@ -1,5 +1,5 @@
 # Welcome to the Cookmaster V2 project!
-
+ 
 You already use GitHub daily to develop the exercises, right? Now, to develop the projects, you must follow the instructions below. Stay tuned every step of the way, and if you have any questions, let us know via Slack! #vqv 🚀
 
 Here you will find details on how to structure your project's development from this repository, using a specific branch and a Pull Request to place your code.
