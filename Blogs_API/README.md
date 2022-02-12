@@ -1,13 +1,12 @@
+## Project requirements
 
-## Requisitos do projeto
+### 1 - Your database models must follow the following specification
 
-### 1 - Os modelos dos seus dados no banco devem seguir a seguinte especificação
+#### The following points will be evaluated:
 
-#### Os seguintes pontos serão avaliados:
+- Your project should use an `ORM` to create and update your database. Cloning the project followed by a migrate command should leave it in its expected form.
 
-- O seu projeto deverá usar um `ORM` para criar e atualizar o seu banco. A clonagem do projeto seguida de um comando de migrate deve deixá-lo em sua forma esperada.
-
-- Deve conter uma tabela chamada **Users**, contendo os seguinte dados:
+- It must contain a table called **Users**, containing the following data:
 
   ```json
   {
@@ -19,7 +18,7 @@
   }
   ```
 
-- Deve conter uma tabela chamada **BlogPosts**, contendo os seguinte dados:
+- It must contain a table called **BlogPosts**, containing the following data:
 
   ```json
   {
@@ -28,17 +27,17 @@
     "updated": "2011-08-01T19:58:51.947Z",
     "title": "Latest updates, August 1st",
     "content": "The whole text for the blog post goes here in this key",
-    "user_id": "401465483996" // esse é o id que referência usuário que é o autor do post
+    "user_id": "401465483996" // this is the id that refers to the user who is the author of the post
   }
   ```
 
-### 2 - Sua aplicação deve ter o endpoint POST `/user`
+### 2 - Your application must have the POST endpoint `/user`
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- O endpoint deve ser capaz de adicionar um novo user a sua tabela no banco de dados;
+- The endpoint must be able to add a new user to its table in the database;
 
-- O corpo da requisição deverá ter o seguinte formato:
+- The request body must have the following format:
 
   ```json
   {
@@ -48,35 +47,35 @@
     "image": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
   }
   ```
-- O campo `displayName` deverá ser uma string com no mínimo de 8 caracteres;
+- The `displayName` field must be a string with at least 8 characters;
 
-- O campo `email` será considerado válido se tiver o formato `<prefixo>@<domínio>` e se for único. Ele é obrigatório.
+- The `email` field will be considered valid if it has the format `<prefix>@<domain>` and is unique. It is mandatory.
 
-- A senha deverá conter 6 caracteres. Ela é obrigatória.
+- The password must contain 6 characters. She is mandatory.
 
-- Caso exista uma pessoa com o mesmo email na base, deve-se retornar o seguinte erro:
-
-  ```json
-  {
-    "message": "Usuário já existe"
-  }
-  ```
-
-- Caso contrário, retornar a mesma resposta do endpoint de `/login`, um token `JWT`:
+- If there is a person with the same email in the base, the following error should be returned:
 
   ```json
   {
-    "token": "token-aqui"
+    "message": "User already exists"
   }
   ```
 
-- O endpoint deverá ser testado.
+- Otherwise, return the same response from the `/login` endpoint, a `JWT` token:
 
-### 3 - Sua aplicação deve ter o endpoint GET `/user`
+  ```json
+  {
+    "token": "token-here"
+  }
+  ```
 
-#### Os seguintes pontos serão avaliados:
+- The endpoint must be tested.
 
-- Deve listar todos os **Users** e retorná-los na seguinte estrutura:
+### 3 - Your application must have the GET `/user` endpoint
+
+#### The following points will be evaluated:
+
+- Must list all **Users** and return them in the following structure:
 
   ```json
   [
@@ -89,15 +88,15 @@
   ]
   ```
 
-- A requisição deve ter token de autenticação nos headers e, caso contrário, retorne um código de `status 401`.
+- The request must have authentication token in the headers and, if not, return a `status 401` code.
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-### 4 - Sua aplicação deve ter o endpoint GET `/user/:id`
+### 4 - Your application must have the GET `/user/:id` endpoint
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- Retorna os detalhes do usuário baseado no `id` da rota. Os dados devem ter o seguinte formato:
+- Returns user details based on the `id` of the route. The data must have the following format:
 
   ```json
   {
@@ -108,23 +107,23 @@
   }
   ```
 
-- A requisição deve ter token de autenticação nos headers e, caso contrário, retorne um código de `status 401`.
+- The request must have authentication token in the headers and, if not, return a `status 401` code.
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-### 5 - Sua aplicação deve ter o endpoint DELETE `/user/me`
+### 5 - Your application must have the DELETE `/user/me` endpoint
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- Utilizando o token de autenticação nos headers, o usuário correspondente deve ser apagado.
+- Using the authentication token in the headers, the corresponding user must be deleted.
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-### 6 - Sua aplicação deve ter o endpoint POST `/login`
+### 6 - Your application must have the POST endpoint `/login`
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- O corpo da requisição deverá seguir o formato abaixo:
+- The body of the request should follow the format below:
 
   ```json
   {
@@ -133,23 +132,23 @@
   }
   ```
 
-- Caso algum desses campos seja inválido ou não exista um usuário correspondente no banco de dados, retorne um código de status 400 com o corpo `{ message: "Campos inválidos" }`.
+- If any of these fields is invalid or there is no corresponding user in the database, return a status code 400 with the body `{ message: "Invalid fields" }`.
 
-- Caso esteja tudo certo com o login, a resposta deve ser um token `JWT`, no seguinte formato:
+- If everything is ok with the login, the response should be a `JWT` token, in the following format:
 
   ```json
   {
-    "token": "token-aqui"
+    "token": "token-here"
   }
   ```
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-### 7 - Sua aplicação deve ter o endpoint POST `/post`
+### 7 - Your application must have the POST endpoint `/post`
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- Esse endpoint deve receber um _BlogPost_ no corpo da requisição e criá-lo no banco. O corpo da requisição deve ter a seguinte estrutura:
+- This endpoint must receive a _BlogPost_ in the body of the request and create it in the database. The request body must have the following structure:
 
   ```json
   {
@@ -158,27 +157,27 @@
   }
   ```
 
-- Caso o post não contenha o `title` e/ou o `content` a API deve retornar um erro de `status 400`.
+- If the post does not contain the `title` and/or the `content` the API should return a `status 400` error.
 
-- A requisição deve ter o token de autenticação nos headers e, caso contrário, retorne um código de `status 401`.
+- The request must have the authentication token in the headers and otherwise return a `status 401` code.
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-### 8 - Sua aplicação deve ter o endpoint GET `/post`
+### 8 - Your application must have the GET `/post` endpoint
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- Esse endpoint deve listar todos os _BlogPosts_ e retorná-los na seguinte estrutura:
+- This endpoint should list all _BlogPosts_ and return them in the following structure:
 
   ```json
   [
     {
       "id": "7706273476706534553",
       "published": "2011-08-01T19:58:00.000Z",
-      "updated": "2011-08-01T19:58:51.947Z",
+      "updated":"2011-08-01T19:58:51.947Z",
       "title": "Latest updates, August 1st",
       "content": "The whole text for the blog post goes here in this key",
-      "user": { // esse usuário é o autor do post
+      "user": { // this user is the author of the post
         "id": "401465483996",
         "displayName": "Brett Wiltshire",
         "email": "brett@email.com",
@@ -188,15 +187,15 @@
   ]
   ```
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-### 9 - Sua aplicação deve ter o endpoint PUT `/post/:id`
+### 9 - Your application must have the PUT `/post/:id` endpoint
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- O endpoint deve receber um **BlogPost** que irá sobrescrever o original com o `id` especificado na URL. Só deve ser permitido para o usuário que criou o **BlogPost**.
+- The endpoint must receive a **BlogPost** that will overwrite the original with the `id` specified in the URL. Should only be allowed to the user who created the **BlogPost**.
 
-- O corpo da requisição deve ter a seguinte estrutura:
+- The request body must have the following structure:
 
   ```json
   {
@@ -205,19 +204,19 @@
   }
   ```
 
-- Caso uma pessoa diferente de quem criou faça a requisição, deve retornar um código `status 403`.
+- If a person other than the one who created it makes the request, it must return a code `status 403`.
 
-- Caso uma requisição sem token seja recebida, deve-se retornar um código de `status 401`.
+- If a request without a token is received, it must return a code of `status 401`.
 
-- Caso o post não contenha o `title` e/ou o `content` a API deve retornar um erro de `status 400`.
+- If the post does not contain the `title` and/or the `content` the API should return a `status 400` error.
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-### 10 - Sua aplicação deve ter o endpoint GET `post/:id`
+### 10 - Your application must have the GET `post/:id` endpoint
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- Retorna um **BlogPost** com o `id` especificado. O retorno deve ter os seguinte formato:
+- Returns a **BlogPost** with the specified `id`. The return must have the following format:
 
   ```json
   {
@@ -226,7 +225,7 @@
     "updated": "2011-08-01T19:58:51.947Z",
     "title": "Latest updates, August 1st",
     "content": "The whole text for the blog post goes here in this key",
-    "user": { // esse usuário é o autor do post
+    "user": { // this user is the author of the post
       "id": "401465483996",
       "displayName": "Brett Wiltshire",
       "email": "brett@email.com",
@@ -235,13 +234,13 @@
   }
   ```
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-### 11 - Sua aplicação deve ter o endpoint GET `post/search?q=:searchTerm`
+### 11 - Your application must have the GET `post/search?q=:searchTerm` endpoint
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- Retorna uma array de **BlogPosts** que contenham em seu título, ou conteúdo, o termo pesquisado no `queryParam` da URL. O retorno deve ter o seguinte formato:
+- Returns an array of **BlogPosts** that contain in their title, or content, the term searched in the `queryParam` of the URL. The return must have the following format:
 
   ```json
   [
@@ -251,7 +250,7 @@
       "updated": "2011-08-01T19:58:51.947Z",
       "title": "Latest updates, August 1st",
       "content": "The whole text for the blog post goes here in this key",
-      "user": { // esse usuário é o autor do post
+      "user": { // this user is the author of the post
         "id": "401465483996",
         "displayName": "Brett Wiltshire",
         "email": "brett@email.com",
@@ -261,43 +260,42 @@
   ]
   ```
 
-- Caso nenhum **BlogPost** satisfaça a busca, retorne um array vazio.
+- If no **BlogPost** satisfies the search, return an empty array.
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-### 12 - Sua aplicação deve ter o endpoint DELETE `post/:id`
+### 12 - Your application must have the DELETE `post/:id` endpoint
 
-#### Os seguintes pontos serão avaliados:
+#### The following points will be evaluated:
 
-- Deleta o post com o `id` especificado. Só deve ser permitido para o usuário que criou o **BlogPost**.
+- Deletes the post with the specified `id`. Should only be allowed to the user who created the **BlogPost**.
 
-- Caso uma pessoa diferente de quem criou faça a requisição, deve retornar um código `status 403`.
+- If a person other than the one who created it makes the request, it must return a code `status 403`.
 
-- Caso uma requisição sem token seja recebida, deve-se retornar um código de `status 401`.
+- If a request without a token is received, it must return a code of `status 401`.
 
-- Caso o post referido não exista, deve-se retornar um código de `status 404`.
+- If the referred post does not exist, a code of `status 404` must be returned.
 
-- O endpoint deverá ser testado.
+- The endpoint must be tested.
 
-## Dicas
+## Tips
 
-### Status HTTP
+### HTTP Status
 
-Tenha em mente que todas as "respostas" devem respeitar os [status do protocolo HTTP](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status) com base no que o REST prega.
+Keep in mind that all "answers" must respect the [HTTP protocol status](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status) based on what REST preaches.
 
-Alguns exemplos:
+Some examples:
 
-  - Requisições que precisam de token mas não o receberam devem retornar um código de `status 401`;
+  - Requests that need a token but have not received it must return a code of `status 401`;
 
-  - Requisições que não seguem o formato pedido pelo servidor devem retornar um código de `status 400`;
+  - Requests that do not follow the format requested by the server must return a code of `status 400`;
 
-  - Um problema inesperado no servidor deve retornar um código de `status 500`;
+  - An unexpected problem on the server should return a code of `status 500`;
 
-  - Um acesso ao criar um recurso, no nosso caso usuário ou post, deve retornar um código de `status 201`.
+  - An access when creating a resource, in our case user or post, should return a code of `status 201`.
 
-### Testes
+### Tests
 
-- Siga as boas práticas para a organização de testes conforme viu nos conteúdos! Caso contrário, você se perderá com facilidade!
+- Follow the best practices for organizing tests as you saw in the contents! Otherwise, you will get lost easily!
 
-- Dê preferência por testes unitários nesse projeto.
-
+- Give preference to unit tests in this project.
