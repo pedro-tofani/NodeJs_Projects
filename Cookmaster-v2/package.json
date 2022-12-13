@@ -25,7 +25,7 @@
     "eslint": "^7.4.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-rescue": "^1.1.26",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
